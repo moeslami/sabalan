@@ -1,0 +1,24 @@
+{
+  "theme": {
+    "mainTheme": "luxbar-menu-material-bluegrey",
+    "direction": "left"
+
+  },
+  "home": {
+    "path": "/",
+    "text": "Mohammad's Home",
+    "title": "Mohammad's Home Page"
+  },
+  "topNav": [
+    {
+      "path": "/about",
+      "text": "About",
+      "title": "About Mohammad"
+    },
+    {
+      "path": "/resume",
+      "text": "CV",
+      "title": "Mohammad's Resume"
+    }
+  ]
+}
