@@ -17,7 +17,7 @@ export default class Nav extends Component {
                 </label>
             </li>
             {navSettings.topNav.map((nav) => (
-              <li className="luxbar-item"><Link title ={nav.title} to={nav.path}>{nav.text}</Link></li>
+              <li key={nav.path} className="luxbar-item"><Link title ={nav.title} to={nav.path}>{nav.text}</Link></li>
             ))}
         </ul>
     </div>

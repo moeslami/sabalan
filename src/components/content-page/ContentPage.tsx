@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import './ContentPage.scss';
 import axios from 'axios';
+import ReactMarkdown from 'react-markdown';
 
 let publicUrl = process.env.PUBLIC_URL;
 class ContentPage extends Component {
 
-  state: {content: any} = {content: null};
+  state: {data: any} = {data: null};
 
   constructor(props: Readonly<any>) {
     super(props);
@@ -19,32 +20,38 @@ class ContentPage extends Component {
   componentDidMount() {
     const { contentPath } = (this.props as any);
     //et pagePath = this.props.location.pathname;
-    axios.get(`${publicUrl}/content/${contentPath}.json`).then((response) => {
-      this.updateState(response.data);
+    let data: any = {};
+    let getPageSettings = axios.get(`${publicUrl}/content/${contentPath}.json`).then((response) => {
+      data = Object.assign({}, data, response.data);
+    });
+
+    let getPageContent = axios.get(`${publicUrl}/content/${contentPath}.md`).then((response) => {
+      data.content = response.data;
+    });
+
+    Promise.all([getPageContent, getPageSettings]).then(() => {
+      this.updateState(data);
     });
   }
   render() {
-    if(this.state.content){
-      document.title = this.state.content.title;
+    if(this.state.data){
+      document.title = this.state.data.title;
     }
 
-    return this.state.content ?
+    return this.state.data ?
       (
         <div className="content-page">
-          <h1>{this.state.content.title}</h1>
-          <div>{this.state.content.body}</div>
+          <h1>{this.state.data.title}</h1>
+          <ReactMarkdown source={this.state.data.content} />
         </div>
 
       ) : (<div className="content-page"></div>);
 
   }
 
-  updateState(content: any){
-    this.setState((prevState) => Object.assign({}, prevState, {content}));
+  updateState(data: any){
+    this.setState((prevState) => Object.assign({}, prevState, {data}));
   }
 }
-
-
-
 
 export default ContentPage;
