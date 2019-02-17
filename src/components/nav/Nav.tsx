@@ -1,26 +1,63 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './luxbar.scss';
 import navSettings from '../../config/nav-settings.json';
-let publicUrl = process.env.PUBLIC_URL;
-export default class Nav extends Component {
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import Menu from '@material-ui/icons/Menu';
+import {withStyles} from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import MenuItem from '@material-ui/core/MenuItem';
+import propTypes from 'prop-types';
+import './Nav.scss';
+
+const publicUrl = process.env.PUBLIC_URL;
+
+const styles = {
+  root: {
+    flexGrow: 1,
+    color: 'white'
+  },
+  menuItem: {
+    textDecoration: 'none',
+    color: 'white'
+  },
+  grow: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginLeft: -12,
+    marginRight: 20,
+  },
+};
+
+class Nav extends Component {
+
+  static propTypes = {
+    classes: propTypes.object.isRequired,
+  }
 
   render(){
+    const { classes } = this.props as any;
+
     return (
-      <div className={`luxbar-menu luxbar-menu-${navSettings.theme.direction} ${navSettings.theme.mainTheme}`}>
-        <ul className="luxbar-navigation">
-            <li className="luxbar-header">
-                <Link to="/" title={navSettings.home.title} className="luxbar-brand"><img src={`${publicUrl}/favicon.png`} />{navSettings.home.text}</Link>
-                <label className="luxbar-hamburger luxbar-hamburger-doublespin"
-                data-id="luxbar-hamburger" data-for="luxbar-checkbox">
-                  <span> </span>
-                </label>
-            </li>
-            {navSettings.topNav.map((nav) => (
-              <li key={nav.path} className="luxbar-item"><Link title ={nav.title} to={nav.path}>{nav.text}</Link></li>
-            ))}
-        </ul>
-    </div>
+      <AppBar className = {classes.root} >
+        <Toolbar>
+        <MenuItem className ={classes.menuItem}>
+          <Menu />
+        </MenuItem>
+
+        {navSettings.topNav.map((nav) => (
+          <Link title ={nav.title} to={nav.path} className ={classes.menuItem} >
+            <MenuItem key={nav.path} className ={classes.menuItem}  >
+            {nav.text}
+            </MenuItem>
+          </Link>
+        ))}
+        </Toolbar>
+      </AppBar>
     );
   }
 }
+
+export default withStyles(styles)(Nav);

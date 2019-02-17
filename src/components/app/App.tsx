@@ -7,6 +7,7 @@ import ContentPage from '../content-page/ContentPage';
 import { Helmet } from 'react-helmet';
 import siteSettings from '../../config/site-settings.json';
 import './App.scss';
+import 'typeface-roboto'
 
 class App extends Component {
   render() {
