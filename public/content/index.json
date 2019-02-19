@@ -1,0 +1,10 @@
+{
+  "title": "Mohammad's home page",
+  "refs":[
+    {
+      "name": "col1",
+      "type":"md",
+      "file":"col1.md"
+    }
+  ]
+}

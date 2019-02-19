@@ -1,0 +1,14 @@
+{
+  "": {
+    "layout": "one-column",
+    "exact": true
+  },
+  "about": {
+    "layout":"one-column",
+    "exact": true
+  },
+  "resume": {
+    "layout":"one-column",
+    "exact": true
+  }
+}

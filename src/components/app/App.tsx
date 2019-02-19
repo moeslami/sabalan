@@ -1,29 +1,43 @@
-import React, { Component } from 'react';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import React, { Component, ComponentClass } from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
 import Header from '../header/Header';
-import routes from '../../config/routes';
+import routes from '../../config/routes.json';
 import Footer from '../footer/Footer';
-import ContentPage from '../content-page/ContentPage';
 import { Helmet } from 'react-helmet';
 import siteSettings from '../../config/site-settings.json';
-import './App.scss';
+import { resolveComponentWithData } from '../../services/component-service';
 import 'typeface-roboto'
+import { withStyles } from '@material-ui/core/styles';
+
+
+const styles = {
+  app: {
+    display: "flex",
+    minHeight: "100vh",
+    flexFlow: 'column wrap',
+  },
+  main: {
+    flex: 1
+  }
+};
 
 class App extends Component {
   render() {
+    const { classes } = this.props as any;
+
     return (
       <BrowserRouter>
-        <div className="App">
+        <div className={classes.app}>
           <Helmet>
             <title>{siteSettings.title}</title>
           </Helmet>
           <Header></Header>
-          <main>
-            {/* routes ... */}
-            <Route path='/' component={() => <ContentPage contentPath="_home" />} exact />
-            {Object.keys(routes.contentPages).map((cp: string) =>
-              <Route key={`/${cp}`} path={`/${cp}`} component={() => <ContentPage contentPath={cp} />} exact={routes.contentPages[cp].exact ? true : false} />
-            )}
+          <main className={classes.main}>
+            {Object.keys(routes).map((routePath) => {
+              const routeConfig = (routes as any)[routePath];
+              const ResolvedComponent = resolveComponentWithData(routePath, routeConfig);
+              return (<Route key={`/${routePath}`} path={`/${routePath}`} component={ResolvedComponent} exact={routeConfig.exact || false} />);
+            })}
           </main>
           <Footer></Footer>
         </div>
@@ -32,4 +46,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withStyles(styles)(App);

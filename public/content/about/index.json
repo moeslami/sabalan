@@ -1,0 +1,15 @@
+{
+  "title": "About Mohammad",
+  "refs":[
+    {
+      "name": "col1",
+      "type":"md",
+      "file":"col1.md"
+    },
+    {
+      "name": "col2",
+      "type":"md",
+      "file":"col2.md"
+    }
+  ]
+}

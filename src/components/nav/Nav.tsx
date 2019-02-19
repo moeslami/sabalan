@@ -9,7 +9,6 @@ import {withStyles} from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import MenuItem from '@material-ui/core/MenuItem';
 import propTypes from 'prop-types';
-import './Nav.scss';
 
 const publicUrl = process.env.PUBLIC_URL;
 
@@ -33,10 +32,6 @@ const styles = {
 
 class Nav extends Component {
 
-  static propTypes = {
-    classes: propTypes.object.isRequired,
-  }
-
   render(){
     const { classes } = this.props as any;
 
@@ -48,7 +43,7 @@ class Nav extends Component {
         </MenuItem>
 
         {navSettings.topNav.map((nav) => (
-          <Link title ={nav.title} to={nav.path} className ={classes.menuItem} >
+          <Link key={nav.path} title ={nav.title} to={nav.path} className ={classes.menuItem} >
             <MenuItem key={nav.path} className ={classes.menuItem}  >
             {nav.text}
             </MenuItem>
