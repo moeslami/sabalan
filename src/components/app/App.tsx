@@ -17,7 +17,8 @@ const styles = {
     flexFlow: 'column wrap',
   },
   main: {
-    flex: 1
+    flex: 1,
+    marginTop: '90px'
   }
 };
 

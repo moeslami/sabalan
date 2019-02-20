@@ -33,7 +33,7 @@ class OneColumnLayout extends Component {
           <ReactMarkdown source={this.state.col1} />
         </div>
 
-      ) : (<div className="content-page"></div>);
+      ) : (<div className={classes.main}></div>);
   }
 }
 
