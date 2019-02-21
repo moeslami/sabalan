@@ -2,9 +2,9 @@
   "title": "Mohammad's resume",
   "refs":[
     {
-      "name": "col1",
+      "name": "first_column",
       "type":"md",
-      "file":"col1.md"
+      "file":"first_column.md"
     }
   ]
 }

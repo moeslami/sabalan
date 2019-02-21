@@ -1,37 +1,32 @@
 
-import React from 'react';
+import React, { ClassType } from 'react';
 import layoutMap from '../config/layout-map';
 import { getContent } from './content-service';
+import { BaseLayout } from '../components/layouts/BaseLayout';
 
-const resolveComponent = (routeConfig: any): any => {
-  let layout = routeConfig.layout;
-  return (layoutMap as any)[layout] || null;
+const matchLayout = (routeConfig: any): any => {
+  return (layoutMap as any)[routeConfig.layout] || null;
 }
 
 const resolveComponentWithData = (routePath:string, routeConfig: any): any => {
-  const ResolvedComponent = resolveComponent(routeConfig);
-  if (!ResolvedComponent) return null;
+  const layout = matchLayout(routeConfig);
+  if (!layout) return null;
+
+  const ResolvedComponent = layout.component;
+  const ContentModel = layout.model;
 
   return class extends React.Component {
-
-    /**
-     *
-     */
+    content: any;
     constructor(props:any) {
       super(props);
-      this.state = {content: getContent(routePath)};
-    }
+      this.content = getContent(routePath)
+    };
 
-    // componentDidMount(){
-    //   getContent(routePath).then((content) => {
-    //     this.setState({ content });
-    //   });
-    // }
 
     render() {
       // ... and renders the wrapped component with the fresh data!
       // Notice that we pass through any additional props
-      return <ResolvedComponent data={this.state} />;
+      return <ResolvedComponent content={this.content} />;
     }
   };
 

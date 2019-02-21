@@ -1,23 +1,15 @@
 import React, {Component} from 'react';
-import {withStyles} from '@material-ui/core/styles';
+import './Footer.scss';
+import siteSettings from '../../config/site-settings.json';
 
-const styles = {
-  main: {
-    backgroundColor: '#f2f2f2',
-    'text-align': 'center',
-    color: '#888',
-    padding: '1rem'
-  }
-}
 class Footer extends Component {
   render(){
-    const { classes} = this.props as any;
     return (
-      <footer className = {classes.main}>
-      ©Sabalan. All Rights Reserved
+      <footer className = 'footer'>
+        <div className='powered'>Powered by ©Sabalan. All Rights Reserved</div>
       </footer>
     );
   }
 }
 
-export default withStyles(styles)(Footer);
+export default Footer;
