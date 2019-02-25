@@ -2,12 +2,8 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { withStyles } from '@material-ui/core/styles';
 import { BaseLayout } from '../BaseLayout';
-
-const styles = {
-  main: {
-    margin: "auto 2rem"
-  }
-};
+import styles from './OneColumnLayout.styles';
+import {LinearProgress} from '@material-ui/core';
 
 class OneColumnLayout extends BaseLayout<OneColumnLayoutModel> {
 
@@ -21,12 +17,13 @@ class OneColumnLayout extends BaseLayout<OneColumnLayoutModel> {
 
     return this.state.content ?
       (
-        <div className={classes.main}>
+        <div className={classes.root}>
           <h1>{this.state.content.title}</h1>
-          <ReactMarkdown source={this.state.content.first_column} />
+          {/* <LinearProgress variant="determinate" value={50} /> */}
+          <ReactMarkdown escapeHtml={false} source={this.state.content.first_column} />
         </div>
 
-      ) : (<div className={classes.main}></div>);
+      ) : (<div className={classes.root}></div>);
   }
 }
 

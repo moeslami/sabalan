@@ -8,6 +8,9 @@ import siteSettings from '../../config/site-settings.json';
 import { resolveComponentWithData } from '../../services/component-service';
 import 'typeface-roboto'
 import { withStyles } from '@material-ui/core/styles';
+import {MuiThemeProvider} from '@material-ui/core/styles';
+import theme1 from '../../themes/theme1';
+
 
 
 const styles = {
@@ -27,6 +30,7 @@ class App extends Component {
     const { classes } = this.props as any;
 
     return (
+      <MuiThemeProvider theme={theme1}>
       <BrowserRouter>
         <div className={classes.app}>
           <Helmet>
@@ -43,6 +47,7 @@ class App extends Component {
           <Footer></Footer>
         </div>
       </BrowserRouter>
+      </MuiThemeProvider>
     );
   }
 }

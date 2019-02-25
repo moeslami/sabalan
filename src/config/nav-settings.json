@@ -11,14 +11,19 @@
   },
   "topNav": [
     {
-      "path": "/about",
-      "text": "About",
-      "title": "About Mohammad"
+      "path": "/employment",
+      "text": "Employment",
+      "title": "Mohammad's Employment History"
     },
     {
-      "path": "/resume",
-      "text": "CV",
-      "title": "Mohammad's Resume"
+      "path": "/skills",
+      "text": "Skills",
+      "title": "Technical Skills"
+    },
+    {
+      "path": "/blog",
+      "text": "Blog",
+      "title": "Blog"
     }
   ]
 }

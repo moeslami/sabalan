@@ -3,11 +3,15 @@
     "layout": "one-column",
     "exact": true
   },
-  "about": {
+  "employment": {
     "layout":"one-column",
     "exact": true
   },
-  "resume": {
+  "skills": {
+    "layout":"one-column",
+    "exact": true
+  },
+  "blog": {
     "layout":"one-column",
     "exact": true
   }
